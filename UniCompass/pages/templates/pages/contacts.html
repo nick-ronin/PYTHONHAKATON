@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load translation_tags %}
+
+{% block title %}Контакты - Unicom{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 20px 0;">
+    <h1>Контакты</h1>
+    <p>Свяжитесь с нами для получения помощи</p>
+</div>
+
+<div style="max-width: 500px; margin: 0 auto;">
+    <div style="background: #d1ecf1; padding: 20px; margin: 10px 0; border-radius: 8px; text-align: center;">
+        <h3>📞 Техническая поддержка</h3>
+        <p>Email: support@unicompass.ru</p>
+        <p>Телефон: +7 (999) 123-45-67</p>
+        <p>Часы работы: 9:00 - 18:00</p>
+    </div>
+    
+    <div style="background: #d4edda; padding: 20px; margin: 10px 0; border-radius: 8px; text-align: center;">
+        <h3>👨‍🏫 Академические консультанты</h3>
+        <p>Email: advisors@unicompass.ru</p>
+        <p>По вопросам учебного процесса</p>
+    </div>
+    
+    <div style="background: #fff3cd; padding: 20px; margin: 10px 0; border-radius: 8px; text-align: center;">
+        <h3>💼 Сотрудничество</h3>
+        <p>Email: partnership@unicompass.ru</p>
+        <p>Для образовательных учреждений</p>
+    </div>
+</div>
+{% endblock %}

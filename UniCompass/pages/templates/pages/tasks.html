@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load translation_tags %}
+
+{% block title %}Задания - Unicom{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 20px 0;">
+    <h1>Мои задания</h1>
+    <p>Управляйте своими академическими задачами</p>
+</div>
+
+<div style="max-width: 500px; margin: 0 auto;">
+    <div style="background: #f8d7da; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #dc3545;">
+        <h3>🔥 Срочные</h3>
+        <div style="display: flex; align-items: center; margin: 10px 0;">
+            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+            <span>взять справку из деканата</span>
+        </div>
+        <div style="display: flex; align-items: center; margin: 10px 0;">
+            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+            <span>посетить занятия по Русскому языку</span>
+        </div>
+    </div>
+
+    <div style="background: #fff3cd; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #ffc107;">
+        <h3>📝 Текущие</h3>
+        <div style="display: flex; align-items: center; margin: 10px 0;">
+            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+            <span>мероприятие в ЦДН</span>
+        </div>
+        <div style="display: flex; align-items: center; margin: 10px 0;">
+            <input type="checkbox" style="margin-right: 10px; transform: scale(1.2);">
+            <span>Написать тьютору</span>
+        </div>
+    </div>
+
+    <div style="background: #d4edda; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #28a745;">
+        <h3>✅ Выполненные</h3>
+        <div style="display: flex; align-items: center; margin: 10px 0;">
+            <input type="checkbox" checked style="margin-right: 10px; transform: scale(1.2);">
+            <span style="text-decoration: line-through; color: #6c757d;">посетить все лекции на неделе</span>
+        </div>
+        <div style="display: flex; align-items: center; margin: 10px 0;">
+            <input type="checkbox" checked style="margin-right: 10px; transform: scale(1.2);">
+            <span style="text-decoration: line-through; color: #6c757d;">сходить за учебником по русскому</span>
+        </div>
+        <div style="display: flex; align-items: center; margin: 10px 0;">
+            <input type="checkbox" checked style="margin-right: 10px; transform: scale(1.2);">
+            <span style="text-decoration: line-through; color: #6c757d;">забрать пропуск в общежитие</span>
+        </div>
+    </div>
+</div>
+
+<!-- Простой скрипт для перечеркивания текста при клике -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const span = this.nextElementSibling;
+            if (this.checked) {
+                span.style.textDecoration = 'line-through';
+                span.style.color = '#6c757d';
+            } else {
+                span.style.textDecoration = 'none';
+                span.style.color = 'inherit';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

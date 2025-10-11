@@ -1,0 +1,35 @@
+{% load translation_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ current_language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Unicom{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'pages/css/style.css' %}">
+</head>
+<body>
+    <!-- Переключатель языков -->
+    <div class="language-switcher">
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            {{ language_form.language }}
+        </form>
+    </div>
+
+    <!-- Основной контент -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Нижняя навигация -->
+    <nav>
+        <a href="{% url 'calendar' %}">📅 {% trans "Calendar" %}</a>
+        <a href="{% url 'tasks' %}">✅ {% trans "Tasks" %}</a>
+<!--        <a href="{% url 'home' %}">🏠 {% trans "Home" %}</a>-->
+        <a href="{% url 'knowledge_base' %}">📚 {% trans "Knowledge Base" %}</a>
+        <a href="{% url 'contacts' %}">📞 {% trans "Contacts" %}</a>
+    </nav>
+</body>
+</html>
