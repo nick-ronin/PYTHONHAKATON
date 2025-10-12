@@ -16,7 +16,8 @@ def home(request):
     return render(request, 'pages/home.html')
 
 def calendar(request):
-    return render(request, 'pages/calendar.html')
+    days = list(range(1, 32))  # дни октября
+    return render(request, 'pages/calendar.html', {'days': days})
 
 def tasks(request):
     return render(request, 'pages/tasks.html')

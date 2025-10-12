@@ -1,21 +1,42 @@
 {% load translation_tags %}
 {% load static %}
-<!DOCTYPE html>
+
 <html lang="{{ current_language }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Unicom{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'pages/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'pages/css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+    <!-- Подключаем Iconify -->
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Переключатель языков -->
-    <div class="language-switcher">
-        <form action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            {{ language_form.language }}
-        </form>
-    </div>
+    <!-- Верхняя панель -->
+    <nav class="navbar navbar-top">
+        <div class="left">
+            <!-- Кнопка "Назад" со стрелкой Iconify -->
+            <a href="{% url 'home' %}" class="back-link" aria-label="Назад">
+                <span class="iconify" data-icon="majesticons:home-line" data-width="26" data-height="26"></span>
+            </a>
+            <a href="{% url 'home' %}" class="back-link" aria-label="Назад">
+                <span class="iconify" data-icon="majesticons:arrow-left-line" data-width="26" data-height="26"></span>
+            </a>
+
+            <!-- Заголовок страницы -->
+            <span class="header-title">{% block header_title %}{% endblock %}</span>
+        </div>
+
+        <!-- Переключатель языка -->
+        <div class="language-switcher">
+            <span class="iconify" data-icon="majesticons:globe-grid" data-width="22" data-height="22"></span>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                {{ language_form.language }}
+            </form>
+        </div>
+    </nav>
 
     <!-- Основной контент -->
     <main>
@@ -24,12 +45,23 @@
     </main>
 
     <!-- Нижняя навигация -->
-    <nav>
-        <a href="{% url 'calendar' %}">📅 {% trans "Calendar" %}</a>
-        <a href="{% url 'tasks' %}">✅ {% trans "Tasks" %}</a>
-<!--        <a href="{% url 'home' %}">🏠 {% trans "Home" %}</a>-->
-        <a href="{% url 'knowledge_base' %}">📚 {% trans "Knowledge Base" %}</a>
-        <a href="{% url 'contacts' %}">📞 {% trans "Contacts" %}</a>
+    <nav class="navbar navbar-bottom">
+        <a href="{% url 'knowledge_base' %}">
+            <span class="iconify" data-icon="majesticons:scroll-text-line" data-width="26" data-height="26"></span>
+        </a>
+        <a href="{% url 'calendar' %}">
+            <span class="iconify" data-icon="majesticons:calendar-line" data-width="26" data-height="26"></span>
+        </a>
+
+        <a href="{% url 'tasks' %}">
+            <span class="iconify" data-icon="majesticons:checkbox-list-line" data-width="26" data-height="26"></span>
+        </a>
+        
+        <a href="{% url 'contacts' %}">
+            <span class="iconify" data-icon="majesticons:phone-line" data-width="26" data-height="26"></span>
+        </a>
+        
+        
     </nav>
 </body>
 </html>

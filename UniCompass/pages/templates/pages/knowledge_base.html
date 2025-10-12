@@ -1,34 +1,95 @@
 {% extends 'base/base.html' %}
 {% load translation_tags %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pages/css/knowledge_base.css' %}">
+{% endblock %}
 
 {% block title %}База знаний - Unicom{% endblock %}
-
+{% block header_title %}База знаний{% endblock %}
 {% block content %}
-<div style="text-align: center; padding: 20px 0;">
-    <h1>База знаний</h1>
-    <p>Полезные материалы для учебы</p>
-</div>
+    <div class="content-wrapper">
+        <div class="accordion">
 
-<div style="max-width: 500px; margin: 0 auto;">
-    <div style="background: #e2e3e5; padding: 15px; margin: 10px 0; border-radius: 8px;">
-        <h3>📚 Программирование</h3>
-        <p>• Python для начинающих</p>
-        <p>• Веб-разработка на Django</p>
-        <p>• Базы данных и SQL</p>
-    </div>
-    
-    <div style="background: #e2e3e5; padding: 15px; margin: 10px 0; border-radius: 8px;">
-        <h3>📊 Математика</h3>
-        <p>• Линейная алгебра</p>
-        <p>• Математический анализ</p>
-        <p>• Теория вероятностей</p>
-    </div>
-    
-    <div style="background: #e2e3e5; padding: 15px; margin: 10px 0; border-radius: 8px;">
-        <h3>🎯 Советы по учебе</h3>
-        <p>• Как эффективно готовиться к экзаменам</p>
-        <p>• Тайм-менеджмент для студентов</p>
-        <p>• Работа в команде над проектами</p>
+            <div class="accordion-item">
+                <p class="accordion-header">
+                    <span class="address-arrow">&gt;</span>
+                    Адреса
+                </p>
+                <div class="accordion-content">
+                    <p>123 Main Street</p>
+                    <p>Город, Страна</p>
+                </div>
+            </div>
 
-</div>
+            <div class="accordion-item">
+                <p class="accordion-header">
+                    <span class="address-arrow">&gt;</span>
+                    Активности
+                </p>
+                <div class="accordion-content">
+                    <p>Спортивные секции</p>
+                    <p>Клубы по интересам</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <p class="accordion-header">
+                    <span class="address-arrow">&gt;</span>
+                    Документы
+                </p>
+                <div class="accordion-content">
+                    <p>Правила общежития</p>
+                    <p>Учебные материалы</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <p class="accordion-header">
+                    <span class="address-arrow">&gt;</span>
+                    Общежитие
+                </p>
+                <div class="accordion-content">
+                    <p>План комнат</p>
+                    <p>Контакты администрации</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <p class="accordion-header">
+                    <span class="address-arrow">&gt;</span>
+                    Учебный процесс
+                </p>
+                <div class="accordion-content">
+                    <p>Расписание занятий</p>
+                    <p>Консультации преподавателей</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="search">
+            <input type="text" class="search-field" placeholder="Спросить у Белки...">
+            <button type="button" id="search-button">
+                <span class="iconify" data-icon="majesticons:arrow-up-line" data-width="28" data-height="28"></span>
+            </button>
+        </div>
+
+        <script>
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement;
+
+                    // Переключаем активный класс
+                    item.classList.toggle('active');
+                });
+            });
+
+            const searchButton = document.getElementById('search-button');
+
+            searchButton.addEventListener('click', () => {
+                alert("Уведомление: еще в разработке");
+            });
+        </script>
+        
+    </div>
 {% endblock %}
