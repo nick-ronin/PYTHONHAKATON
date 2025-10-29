@@ -85,10 +85,9 @@
     font-size: 16px;
 }
 .graphic {
-    margin-top: 10px;
+    margin-top: 23px;
     margin-bottom: 8px;
     font-size: 20px;
-    border-top: 3px solid var(--profile-image-color);
 }
 .graphic-days {
     font-size: 16px;

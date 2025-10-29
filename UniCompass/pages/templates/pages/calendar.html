@@ -1,156 +1,69 @@
 {% extends 'base/base.html' %}
+
 {% load translation_tags %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pages/css/calendar.css' %}">
+{% endblock %}
 
 {% block title %}Календарь - Unicom{% endblock %}
+{% block header_title %}База знаний{% endblock %}
 
 {% block content %}
-<div style="text-align: center; padding: 20px 0;">
-    <h1>Календарь</h1>
-    <p>Октябрь 2024</p>
-</div>
+<div class="content-wrapper">
+    <header class="block-header">
+        <h1>Октябрь 2025</h1>
+        <div class="date-buttons">
+            <a href="" class="back-link" aria-label="Назад">
+                <span class="iconify" data-icon="majesticons:arrow-left-line" data-width="26" data-height="26"></span>
+            </a>
+            <a href="" class="back-link" aria-label="Вперед">
+                <span class="iconify" data-icon="majesticons:arrow-right-line" data-width="26" data-height="26"></span>
+            </a>
+        </div>
+    </header>
 
-<div style="max-width: 500px; margin: 0 auto;">
-    <!-- Заголовки дней недели -->
-    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 10px; text-align: center; font-weight: bold; background: #34495e; color: white; padding: 10px 0; border-radius: 8px 8px 0 0;">
-        <div>Пн</div>
-        <div>Вт</div>
-        <div>Ср</div>
-        <div>Чт</div>
-        <div>Пт</div>
-        <div>Сб</div>
-        <div>Вс</div>
+    <!-- Календарь -->
+    <div class="calendar">
+        <div class="days-header">
+            <div>Пн</div>
+            <div>Вт</div>
+            <div>Ср</div>
+            <div>Чт</div>
+            <div>Пт</div>
+            <div>Сб</div>
+            <div>Вс</div>
+        </div>
+
+        <div class="days">
+            <!-- Пустые ячейки для смещения -->
+            <div class="day empty"></div>
+
+            <!-- Дни месяца -->
+            {% for day in days %}
+                <div class="day{% if day == 15 %} event{% endif %}">
+                    <div class="day-number">{{ day }}</div>
+                    {% if day == 15 %}
+                        <div class="day-event">
+                            <div><strong>10:00</strong> Получить справку</div>
+                            <div><a href="{% url 'mfc_detail' %}">МФЦ</a></div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <!-- Пустые ячейки в конце -->
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+            <div class="day empty"></div>
+        </div>
     </div>
 
-    <!-- Сетка дней -->
-    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;">
-        <!-- Пустые ячейки для смещения (1 октября - вторник) -->
-        <div style="height: 90px; background: #f8f9fa;"></div>
-
-        <!-- 1-31 октября -->
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">1</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">2</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">3</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">4</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">5</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">6</div>
-        </div>
-
-        <!-- Вторая неделя -->
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">7</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">8</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">9</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">10</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">11</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">12</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">13</div>
-        </div>
-
-        <!-- Третья неделя -->
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">14</div>
-        </div>
-        <div style="height: 90px; background: #ffebee; border: 1px solid #f44336; padding: 3px; font-size: 10px; position: relative;">
-            <div style="text-align: left; font-weight: bold; margin-bottom: 1px;">15</div>
-            <div style="color: #d32f2f;">
-                <div><strong>10:00</strong><br>Получить<br>справку</div>
-                <div><a href="{% url 'mfc_detail' %}" style="color: #1976d2; text-decoration: none;">📍МФЦ</a></div>
-            </div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">16</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">17</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">18</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">19</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">20</div>
-        </div>
-
-        <!-- Четвертая неделя -->
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">21</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">22</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">23</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">24</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">25</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">26</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">27</div>
-        </div>
-
-        <!-- Пятая неделя -->
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">28</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">29</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">30</div>
-        </div>
-        <div style="height: 90px; background: white; border: 1px solid #e9ecef; padding: 5px; font-size: 14px;">
-            <div style="text-align: left;">31</div>
-        </div>
-
-        <!-- Пустые ячейки в конце -->
-        <div style="height: 90px; background: #f8f9fa;"></div>
-        <div style="height: 90px; background: #f8f9fa;"></div>
-        <div style="height: 90px; background: #f8f9fa;"></div>
-    </div>
-</div>
-
-<!-- Ближайшие события -->
-<div style="max-width: 500px; margin: 30px auto 0 auto;">
-    <div class="content-block">
+    <!-- Ближайшие события -->
+    <div class="upcoming-events">
         <h3>📌 Ближайшие события</h3>
         <p><strong>Завтра, 15 октября</strong></p>
-        <p>• 10:00 - Получить справку в мфц</p>
+        <p>• 10:00 - Получить справку в МФЦ</p>
     </div>
 </div>
 {% endblock %}
-
-
-
-
-

@@ -18,19 +18,8 @@ def home(request):
 
 
 def calendar(request):
-<<<<<<< Updated upstream
-    return render(request, 'pages/calendar.html')
-=======
     days = list(range(1, 32))  # дни октября
-    current_language = translation.get_language()
-
-    if current_language == 'en':
-        template_name = 'en/calendar.html'
-    else:
-        template_name = 'pages/calendar.html'
-
-    return render(request, template_name, {'days': days})
->>>>>>> Stashed changes
+    return render(request, 'pages/calendar.html', {'days': days})
 
 def tasks(request):
     template_name = 'en/tasks.html' if translation.get_language() == 'en' else 'pages/tasks.html'
