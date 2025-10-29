@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '.ngrok-free.dev',
     '.ngrok.io',
+    '.loca.lt',
 ]
 
 
